@@ -15,12 +15,29 @@
         android:layout_height="match_parent"/>
 
     <com.icongkhanh.photoeditor.PhotoEditorView
+        android:background="@android:color/black"
+        android:layout_centerInParent="true"
         android:id="@+id/photo_editor"
-        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <SeekBar
+        android:max="100"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_above="@+id/button_layout" />
+
+    <SeekBar
+        android:visibility="invisible"
+        android:max="100"
+        android:id="@+id/alpha_bar"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+
     <LinearLayout
+        android:id="@+id/button_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">

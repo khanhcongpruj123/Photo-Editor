@@ -1,6 +1,7 @@
 package com.icongkhanh.photoeditor
 
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,7 +13,7 @@ import com.bumptech.glide.Glide
 /**
  * A simple [Fragment] subclass.
  */
-class PreviewFragemnt(val path: String) : Fragment() {
+class PreviewFragemnt(val path: Uri) : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

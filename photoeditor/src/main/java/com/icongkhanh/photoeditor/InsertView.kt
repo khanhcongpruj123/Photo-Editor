@@ -23,6 +23,7 @@ abstract class InsertView : FrameLayout {
     private lateinit var btnScale: ImageButton
     private lateinit var btnEdit: ImageButton
     private var onRequestEditListener: OnRequestEditListener? = null
+    private lateinit var transformer : Transformer
 
     init {
 
@@ -30,18 +31,22 @@ abstract class InsertView : FrameLayout {
         setupScaleButton()
         setupEditButton()
 
+        transformer = Transformer()
+
         gestureDetector = GestureDetector(
             onMove = {deltaX, deltaY ->
                 adjustTranslation(this, deltaX, deltaY)
+//                Log.d("AppLog", "InsertView: top: ${top} - left: ${left} - translateX: ${translationX} - translateY: ${translationY}")
             },
             onRotate = {rotation ->
                 val rotation = adjustAngle(this.rotation + rotation)
                 this.rotation = rotation
+                transformer.rotation = rotation
             }
         )
 
         setOnTouchListener { v, event ->
-
+            performClick()
             focus()
             gestureDetector.onTouch(v, event)
             true
@@ -92,9 +97,9 @@ abstract class InsertView : FrameLayout {
             val width = this.width + deltaX.toInt()
             val height = this.height + deltaY.toInt()
             if (width < 40 || height < 40) return@ScaleDetector
-            val layout = FrameLayout.LayoutParams(width, height)
-            layout.topMargin = (this.layoutParams as FrameLayout.LayoutParams).topMargin
-            layout.marginStart = (this.layoutParams as FrameLayout.LayoutParams).marginStart
+            val layout = RelativeLayout.LayoutParams(width, height)
+            layout.topMargin = (this.layoutParams as RelativeLayout.LayoutParams).topMargin
+            layout.marginStart = (this.layoutParams as RelativeLayout.LayoutParams).marginStart
             this.layoutParams = layout
         }
         btnScale.setOnTouchListener(scaleDetector)
